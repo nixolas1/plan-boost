@@ -1,14 +1,26 @@
 {
-  "name": "boost",
+  "name": "plan-boost",
   "version": "1.0.0",
+  "description": "MCP server for collaborative plan review — create plans, get feedback, and iterate with a rich UI",
   "type": "module",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nixo/plan-boost"
+  },
+  "keywords": ["mcp", "planning", "collaboration", "review", "claude"],
+  "bin": {
+    "plan-boost": "dist/src/mcp-server.js"
+  },
+  "files": ["dist/**/*"],
   "scripts": {
     "dev:ui": "vite",
     "build:ui": "vite build",
     "build:server": "tsc -p tsconfig.server.json",
     "build": "npm run build:server && npm run build:ui",
-    "start": "node dist/mcp-server.js",
-    "seed": "node dist/scripts/seed.js"
+    "start": "node dist/src/mcp-server.js",
+    "seed": "node dist/scripts/seed.js",
+    "prepublishOnly": "npm run build"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.12.1",

@@ -38,7 +38,8 @@ export function registerTools(server: McpServer, getPort: () => number) {
       // Auto-open browser
       try {
         const { exec } = await import('child_process');
-        exec(`open "${url}"`);
+        const cmd = process.platform === 'win32' ? 'start' : process.platform === 'darwin' ? 'open' : 'xdg-open';
+        exec(`${cmd} "${url}"`);
       } catch { /* ignore */ }
 
       return {
