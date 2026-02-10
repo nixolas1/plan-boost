@@ -58,7 +58,7 @@ Can you create a plan for this?"
 ```
 
 Claude will use the `create_plan` tool, which:
-- Creates a plan in SQLite (`~/.boost/boost.db`)
+- Creates a plan in SQLite (see Database location below)
 - Starts a web server on `localhost:3456`
 - Opens your browser to the plan UI
 - Returns the plan URL
@@ -135,7 +135,11 @@ Another instance is running. Kill it or change the port in `src/mcp-server.ts` (
 
 **Database location**
 
-Plans are stored in `~/.boost/boost.db`. Delete this file to reset.
+Plans are stored in:
+- **macOS**: `~/Library/boost/boost.db`
+- **Linux**: `$XDG_DATA_HOME/boost/boost.db` (or `~/.local/state/boost/boost.db` if `XDG_DATA_HOME` is not set)
+
+Delete this file to reset.
 
 **WebSocket connection failed**
 
@@ -155,7 +159,7 @@ npm run seed       # populate test data
 
 - **MCP server** (stdio) — exposes tools to Claude
 - **Express + WebSocket** (localhost:3456) — serves UI and pushes real-time updates
-- **SQLite** (`~/.boost/boost.db`) — stores plans, sections, comments, provocations
+- **SQLite** (platform-specific location) — stores plans, sections, comments, provocations
 - **Svelte 5 frontend** — reactive UI with markdown editing and diff view
 
 ## License

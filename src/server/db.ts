@@ -1,7 +1,7 @@
 import Database from 'better-sqlite3';
 import { mkdirSync } from 'fs';
 import { join } from 'path';
-import { homedir } from 'os';
+import { homedir, platform } from 'os';
 import { v4 as uuid } from 'uuid';
 import type {
   Plan,
@@ -14,9 +14,27 @@ import type {
   FeedbackResult,
 } from './types.js';
 
-const dbDir = join(homedir(), '.boost');
+function getDbPath(): string {
+  const home = homedir();
+  const plat = platform();
+  
+  if (plat === 'darwin') {
+    // macOS: ~/Library/boost/boost.db
+    return join(home, 'Library', 'boost', 'boost.db');
+  } else {
+    // Linux and others: $XDG_DATA_HOME/boost/boost.db or $HOME/.local/state/boost/boost.db
+    const xdgDataHome = process.env.XDG_DATA_HOME;
+    if (xdgDataHome) {
+      return join(xdgDataHome, 'boost', 'boost.db');
+    } else {
+      return join(home, '.local', 'state', 'boost', 'boost.db');
+    }
+  }
+}
+
+const dbPath = getDbPath();
+const dbDir = join(dbPath, '..');
 mkdirSync(dbDir, { recursive: true });
-const dbPath = join(dbDir, 'boost.db');
 
 const db = new Database(dbPath);
 db.pragma('journal_mode = WAL');
