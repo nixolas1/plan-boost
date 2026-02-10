@@ -1,0 +1,34 @@
+{
+  "name": "boost",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev:ui": "vite",
+    "build:ui": "vite build",
+    "build:server": "tsc -p tsconfig.server.json",
+    "build": "npm run build:server && npm run build:ui",
+    "start": "node dist/mcp-server.js",
+    "seed": "node dist/scripts/seed.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.1",
+    "better-sqlite3": "^11.8.2",
+    "diff-match-patch": "^1.0.5",
+    "express": "^4.21.2",
+    "marked": "^15.0.7",
+    "uuid": "^11.1.0",
+    "ws": "^8.18.1"
+  },
+  "devDependencies": {
+    "@sveltejs/vite-plugin-svelte": "^5.0.3",
+    "@types/better-sqlite3": "^7.6.13",
+    "@types/diff-match-patch": "^1.0.36",
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.13.4",
+    "@types/uuid": "^10.0.0",
+    "@types/ws": "^8.18.0",
+    "svelte": "^5.20.2",
+    "typescript": "^5.7.3",
+    "vite": "^6.1.0"
+  }
+}
