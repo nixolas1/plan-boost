@@ -28,7 +28,7 @@ Great for: refactoring, new feature design, debugging strategy, architecture dec
 **Option 1: Quick install** (requires Claude Code CLI)
 
 ```bash
-claude mcp add plan-boost
+claude mcp add plan-boost -- npx -y plan-boost  
 ```
 
 **Option 2: Manual install**
