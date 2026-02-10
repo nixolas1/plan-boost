@@ -1,6 +1,6 @@
 import Database from 'better-sqlite3';
 import { mkdirSync } from 'fs';
-import { join } from 'path';
+import { join, dirname } from 'path';
 import { homedir, platform } from 'os';
 import { v4 as uuid } from 'uuid';
 import type {
@@ -33,7 +33,7 @@ function getDbPath(): string {
 }
 
 const dbPath = getDbPath();
-const dbDir = join(dbPath, '..');
+const dbDir = dirname(dbPath);
 mkdirSync(dbDir, { recursive: true });
 
 const db = new Database(dbPath);
