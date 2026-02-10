@@ -23,6 +23,7 @@ function getDbPath(): string {
     return join(home, 'Library', 'boost', 'boost.db');
   } else {
     // Linux and others: $XDG_DATA_HOME/boost/boost.db or $HOME/.local/state/boost/boost.db
+    // Note: Using .local/state instead of .local/share (XDG_DATA_HOME default) for state data
     const xdgDataHome = process.env.XDG_DATA_HOME;
     if (xdgDataHome) {
       return join(xdgDataHome, 'boost', 'boost.db');
