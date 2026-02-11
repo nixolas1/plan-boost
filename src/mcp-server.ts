@@ -26,6 +26,17 @@ async function main() {
   const transport = new StdioServerTransport();
   await server.connect(transport);
   console.error('[boost] MCP server running on stdio');
+
+  // Exit when stdin closes (parent process disconnected)
+  process.stdin.on('end', () => {
+    console.error('[boost] stdin closed, exiting');
+    process.exit(0);
+  });
+
+  process.stdin.on('close', () => {
+    console.error('[boost] stdin closed, exiting');
+    process.exit(0);
+  });
 }
 
 main().catch((err) => {
