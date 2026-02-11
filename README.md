@@ -28,7 +28,7 @@ Great for: refactoring, new feature design, debugging strategy, architecture dec
 **Option 1: Quick install** (requires Claude Code CLI)
 
 ```bash
-claude mcp add plan-boost -- npx -y plan-boost  
+claude mcp add -s user plan-boost -- npx -y plan-boost
 ```
 
 **Option 2: Manual install**
@@ -131,7 +131,12 @@ Manually visit `http://localhost:3456` — the plan URL is in Claude's response.
 
 **Port 3456 already in use**
 
-Another instance is running. Kill it or change the port in `src/mcp-server.ts` (rebuild required).
+Another instance is running. Kill it with:
+```bash
+lsof -ti:3456 | xargs kill -9
+```
+
+Or change the port in `src/mcp-server.ts` (rebuild required).
 
 **Database location**
 
